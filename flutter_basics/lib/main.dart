@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  void onAnswerButtonClock() {
+    print('Answer');
+  }
+
   @override
   Widget build(BuildContext context) {
     var questions = [
@@ -19,15 +23,15 @@ class MyApp extends StatelessWidget {
             Text('The question!'),
             ElevatedButton(
               child: Text('Answer 1'),
-              onPressed: () => {},
+              onPressed: onAnswerButtonClock,
             ),
             ElevatedButton(
               child: Text('Answer 2'),
-              onPressed: () => {},
+              onPressed: onAnswerButtonClock,
             ),
             ElevatedButton(
               child: Text('Answer 3'),
-              onPressed: () => {},
+              onPressed: onAnswerButtonClock,
             ),
           ],
         ),
