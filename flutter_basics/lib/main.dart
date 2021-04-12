@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
   var currentQuestionIndex = 0;
   void onAnswerButtonClock() {
-    print('Answered');
+    setState(() {
+      currentQuestionIndex += 1;
+    });
     print(currentQuestionIndex);
-    currentQuestionIndex += 1;
   }
 
   @override
@@ -23,7 +31,9 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text(questions[currentQuestionIndex]),
+            Text(currentQuestionIndex <= questions.length
+                ? questions[currentQuestionIndex]
+                : null),
             ElevatedButton(
               child: Text('Answer 1'),
               onPressed: onAnswerButtonClock,
