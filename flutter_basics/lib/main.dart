@@ -5,22 +5,23 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var currentQuestionIndex = 0;
-  void onAnswerButtonClock() {
+class _MyAppState extends State<MyApp> {
+  var _currentQuestionIndex = 0;
+
+  void _onAnswerButtonClock() {
     setState(() {
-      currentQuestionIndex += 1;
+      _currentQuestionIndex += 1;
     });
-    print(currentQuestionIndex);
+    print(_currentQuestionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
+    var _questions = [
       'What\'s your favoriete color?',
       'What\'s your favoriete animal?'
     ];
@@ -31,20 +32,20 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(currentQuestionIndex <= questions.length
-                ? questions[currentQuestionIndex]
+            Text(_currentQuestionIndex <= _questions.length
+                ? _questions[_currentQuestionIndex]
                 : null),
             ElevatedButton(
               child: Text('Answer 1'),
-              onPressed: onAnswerButtonClock,
+              onPressed: _onAnswerButtonClock,
             ),
             ElevatedButton(
               child: Text('Answer 2'),
-              onPressed: onAnswerButtonClock,
+              onPressed: _onAnswerButtonClock,
             ),
             ElevatedButton(
               child: Text('Answer 3'),
-              onPressed: onAnswerButtonClock,
+              onPressed: _onAnswerButtonClock,
             )
           ],
         ),
