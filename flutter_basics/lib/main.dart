@@ -13,11 +13,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _currentQuestionIndex = 0;
 
-  void _onAnswerButtonClock() {
+  void _onAnswerButtonClock(length) {
+    print(_currentQuestionIndex);
+    print(length);
     setState(() {
+      if (_currentQuestionIndex >= length - 1) return;
       _currentQuestionIndex += 1;
     });
-    print(_currentQuestionIndex);
   }
 
   @override
@@ -36,15 +38,15 @@ class _MyAppState extends State<MyApp> {
             Question(_questions[_currentQuestionIndex]),
             ElevatedButton(
               child: Text('Answer 1'),
-              onPressed: _onAnswerButtonClock,
+              onPressed: () => _onAnswerButtonClock(_questions.length),
             ),
             ElevatedButton(
               child: Text('Answer 2'),
-              onPressed: _onAnswerButtonClock,
+              onPressed: () => _onAnswerButtonClock(_questions.length),
             ),
             ElevatedButton(
               child: Text('Answer 3'),
-              onPressed: _onAnswerButtonClock,
+              onPressed: () => _onAnswerButtonClock(_questions.length),
             )
           ],
         ),
