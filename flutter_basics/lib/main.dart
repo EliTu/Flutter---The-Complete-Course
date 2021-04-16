@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _currentQuestionIndex = 0;
-  var _questions = [
+  var _questionObjects = [
     {
       'question': 'What\'s your favoriete color?',
       'answers': ['Blue', 'Red', 'Green', 'White']
@@ -43,8 +43,9 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Question(_questions[_currentQuestionIndex]['question']),
-            for (var answer in _questions[_currentQuestionIndex]['answers'])
+            Question(_questionObjects[_currentQuestionIndex]['question']),
+            for (var answer in _questionObjects[_currentQuestionIndex]
+                ['answers'])
               Answer(_onAnswerButtonClock, answer)
           ],
         ),
