@@ -13,20 +13,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _currentQuestionIndex = 0;
-  var _questionObjects = [
-    {
-      'question': 'What\'s your favoriete color?',
-      'answers': ['Blue', 'Red', 'Green', 'White']
-    },
-    {
-      'question': 'What\'s your favoriete animal?',
-      'answers': ['Cat', 'Dog', 'Dolphin', 'Rhino']
-    },
-    {
-      'question': 'Who\s your favoriete Roman emperor?',
-      'answers': ['Augustus', 'Marcus Aurelius', 'Trajan', 'Vespasian']
-    }
-  ];
 
   void _onAnswerButtonClock() {
     setState(() {
@@ -36,6 +22,21 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    const _questionObjects = [
+      {
+        'question': 'What\'s your favoriete color?',
+        'answers': ['Blue', 'Red', 'Green', 'White']
+      },
+      {
+        'question': 'What\'s your favoriete animal?',
+        'answers': ['Cat', 'Dog', 'Dolphin', 'Rhino']
+      },
+      {
+        'question': 'Who\s your favoriete Roman emperor?',
+        'answers': ['Augustus', 'Marcus Aurelius', 'Trajan', 'Vespasian']
+      }
+    ];
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
