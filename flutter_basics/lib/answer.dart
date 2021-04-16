@@ -9,11 +9,13 @@ class Answer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: double.maxFinite,
       child: ElevatedButton(
         child: Text('$_answerText'),
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blue)),
+          backgroundColor: MaterialStateProperty.all(Colors.blue),
+          foregroundColor: MaterialStateProperty.all(Colors.white),
+        ),
         onPressed: _tapHandler,
       ),
     );

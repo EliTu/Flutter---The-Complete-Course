@@ -13,7 +13,20 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _currentQuestionIndex = 0;
-  List<String> answers = ['Woo', 'Yee', 'Haw'];
+  var _questions = [
+    {
+      'question': 'What\'s your favoriete color?',
+      'answers': ['Blue', 'Red', 'Green', 'White']
+    },
+    {
+      'question': 'What\'s your favoriete animal?',
+      'answers': ['Cat', 'Dog', 'Dolphin', 'Rhino']
+    },
+    {
+      'question': 'Who\s your favoriete Roman emperor?',
+      'answers': ['Augustus', 'Marcus Aurelius', 'Trajan', 'Vespasian']
+    }
+  ];
 
   void _onAnswerButtonClock() {
     setState(() {
@@ -23,10 +36,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var _questions = [
-      'What\'s your favoriete color?',
-      'What\'s your favoriete animal?'
-    ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -34,8 +43,9 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Question(_questions[_currentQuestionIndex]),
-            for (var answer in answers) Answer(_onAnswerButtonClock, answer)
+            Question(_questions[_currentQuestionIndex]['question']),
+            for (var answer in _questions[_currentQuestionIndex]['answers'])
+              Answer(_onAnswerButtonClock, answer)
           ],
         ),
         backgroundColor: Color(0xFFECECEC),
