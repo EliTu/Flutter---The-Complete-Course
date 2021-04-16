@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './question.dart';
+import './answer.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,12 +13,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _currentQuestionIndex = 0;
+  List<String> answers = ['Woo', 'Yee', 'Haw'];
 
-  void _onAnswerButtonClock(length) {
-    print(_currentQuestionIndex);
-    print(length);
+  void _onAnswerButtonClock() {
     setState(() {
-      if (_currentQuestionIndex >= length - 1) return;
       _currentQuestionIndex += 1;
     });
   }
@@ -36,18 +35,7 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: [
             Question(_questions[_currentQuestionIndex]),
-            ElevatedButton(
-              child: Text('Answer 1'),
-              onPressed: () => _onAnswerButtonClock(_questions.length),
-            ),
-            ElevatedButton(
-              child: Text('Answer 2'),
-              onPressed: () => _onAnswerButtonClock(_questions.length),
-            ),
-            ElevatedButton(
-              child: Text('Answer 3'),
-              onPressed: () => _onAnswerButtonClock(_questions.length),
-            )
+            for (var answer in answers) Answer(_onAnswerButtonClock, answer)
           ],
         ),
         backgroundColor: Color(0xFFECECEC),
