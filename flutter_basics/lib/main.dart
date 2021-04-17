@@ -66,9 +66,8 @@ class _MyAppState extends State<MyApp> {
               )
             : Column(
                 children: [
-                  Container(
-                    width: double.maxFinite,
-                    margin: EdgeInsets.only(top: 50),
+                  Center(
+                    heightFactor: 5,
                     child: Text(
                       'Done!',
                       style: TextStyle(fontSize: 40),
