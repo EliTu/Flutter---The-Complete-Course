@@ -27,11 +27,23 @@ class _MyAppState extends State<MyApp> {
     }
   ];
   var _currentQuestionIndex = 0;
+  var isNoMoreQuestions = false;
 
   void _onAnswerButtonClock() {
-    if (_currentQuestionIndex >= _questionObjects.length - 1) return;
+    if (_currentQuestionIndex >= _questionObjects.length - 1) {
+      return setState(() {
+        isNoMoreQuestions = true;
+      });
+    }
     setState(() {
       _currentQuestionIndex++;
+    });
+  }
+
+  void _onResetButtonClick() {
+    setState(() {
+      _currentQuestionIndex = 0;
+      isNoMoreQuestions = false;
     });
   }
 
@@ -39,18 +51,34 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Color(0xFFECECEC),
         appBar: AppBar(
           title: Text('My First App!'),
         ),
-        body: Column(
-          children: [
-            Question(_questionObjects[_currentQuestionIndex]['question']),
-            for (var answer in _questionObjects[_currentQuestionIndex]
-                ['answers'])
-              Answer(_onAnswerButtonClock, answer)
-          ],
-        ),
-        backgroundColor: Color(0xFFECECEC),
+        body: !isNoMoreQuestions
+            ? Column(
+                children: [
+                  Question(_questionObjects[_currentQuestionIndex]['question']),
+                  for (var answer in _questionObjects[_currentQuestionIndex]
+                      ['answers'])
+                    Answer(_onAnswerButtonClock, answer)
+                ],
+              )
+            : Column(
+                children: [
+                  Container(
+                    width: double.maxFinite,
+                    margin: EdgeInsets.only(top: 50),
+                    child: Text(
+                      'Done!',
+                      style: TextStyle(fontSize: 40),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  ElevatedButton(
+                      onPressed: _onResetButtonClick, child: Text('Reset'))
+                ],
+              ),
       ),
     );
   }
